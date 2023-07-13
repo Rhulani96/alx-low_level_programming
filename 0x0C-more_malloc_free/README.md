@@ -1,67 +1,172 @@
-##C - malloc, free
+TASKS
+		
+0. Trust no one
+		
+Write a function that allocates memory using malloc.
+		
 
-####TASKS
+		
+Prototype: void *malloc_checked(unsigned int b);
+		
 
-####[0. Float like a butterfly, sting like a bee](0-create_array.c)
+		
+Returns a pointer to the allocated memory
+		
 
-- Write a function that creates an array of chars, and initializes it with a specific char.
+		
+if malloc fails, the malloc_checked function should cause normal process termination with a status value of 98
+		
 
-- Prototype: char *create_array(unsigned int size, char c);
-- Returns NULL if size = 0
-- Returns a pointer to the array, or NULL if it fails
+		
+1. string_nconcat
+		
+Write a function that concatenates two strings.
+		
 
-####[1. The woman who has no imagination has no wings](1-strdup.c)
+		
+Prototype: char *string_nconcat(char *s1, char *s2, unsigned int n);
+		
 
-- Write a function that returns a pointer to a newly allocated space in memory, which contains a copy of the string given as a parameter.
+		
+The returned pointer shall point to a newly allocated space in memory, which contains s1, followed by the first n bytes of s2, and null terminated
+		
 
-- Prototype: char *_strdup(char *str);
-- The _strdup() function returns a pointer to a new string which is a duplicate of the string str. Memory for the new string is obtained with malloc, and can be freed with free.
-- Returns NULL if str = NULL
-- On success, the _strdup function returns a pointer to the duplicated string. It returns NULL if insufficient memory was available
+		
+If the function fails, it should return NULL
+		
 
-#### [2. He who is not courageous enough to take risks will accomplish nothing in life](2-str_concat.c)
+		
+If n is greater or equal to the length of s2 then use the entire string s2
+		
 
-- Write a function that concatenates two strings.
-
-- Prototype: char str_concat(char s1, char s2);
-- The returned pointer should point to a newly allocated space in memory which contains the contents of s1, followed by the contents of s2, and null terminated
+		
 if NULL is passed, treat it as an empty string
-- The function should return NULL on failure
+		
 
-####[3. If you even dream of beating me you'd better wake up and apologize](3-alloc_grid.c)
+		
+2. calloc
+		
+Write a function that allocates memory for an array, using malloc.
+		
 
-- Write a function that returns a pointer to a 2 dimensional array of integers.
+		
+Prototype: void *_calloc(unsigned int nmemb, unsigned int size);
+		
 
-- Prototype: int **alloc_grid(int width, int height);
-- Each element of the grid should be initialized to 0
-- The function should return NULL on failure
-- If width or height is 0 or negative, return NULL
+		
+The _calloc function allocates memory for an array of nmemb elements of size bytes each and returns a pointer to the allocated memory.
+		
 
-####[4. It's not bragging if you can back it up](4-free_grid.c)
+		
+The memory is set to zero
+		
 
-Write a function that frees a 2 dimensional grid previously created by your alloc_grid function.
+		
+If nmemb or size is 0, then _calloc returns NULL
+		
 
-Prototype: void free_grid(int **grid, int height);
-Note that we will compile with your alloc-grid.c file. Make sure it compiles.
+		
+If malloc fails, then _calloc returns NULL
+		
 
-####[5. It isn't the mountains ahead to climb that wear you out; it's the pebble in your shoe](100-argstostr.c)
+		
+3. array_range
+		
+Write a function that creates an array of integers.
+		
 
-- Write a function that concatenates all the arguments of your program.
+		
+Prototype: int *array_range(int min, int max);
+		
 
-- Prototype: char *argstostr(int ac, char **av);
-- Returns NULL if ac == 0 or av == NULL
-- Returns a pointer to a new string, or NULL if it fails
-- Each argument should be followed by a \n in the new string  
+		
+The array created should contain all the values from min (included) to max (included), ordered from min to max
+		
 
-####[6. I will show you how great I am] (101-strtow.c)
+		
+Return: the pointer to the newly created array
+		
 
-- Write a function that splits a string into words.
+		
+If min > max, return NULL
+		
 
-- Prototype: char **strtow(char *str);
-- The function returns a pointer to an array of strings (words)
-- Each element of this array should contain a single word, null-terminated
-- The last element of the returned array should be NULL
-- Words are separated by spaces
-- Returns NULL if str == NULL or str == ""
-- If your function fails, it should return NULL
+		
+If malloc fails, return NULL
+		
+
+		
+4. realloc
+		
+Write a function that reallocates a memory block using malloc and free
+		
+
+		
+Prototype: void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+		
+
+		
+where ptr is a pointer to the memory previously allocated with a call to malloc: malloc(old_size)
+		
+
+		
+old_size is the size, in bytes, of the allocated space for ptr and new_size is the new size, in bytes of the new memory block
+		
+
+		
+The contents will be copied to the newly allocated space, in the range from the start of ptr up to the minimum of the old and new sizes
+		
+
+		
+If new_size > old_size, the “added” memory should not be initialized
+		
+
+		
+If new_size == old_size do not do anything and return ptr
+		
+
+		
+If ptr is NULL, then the call is equivalent to malloc(new_size), for all values of old_size and new_size
+		
+
+		
+If new_size is equal to zero, and ptr is not NULL, then the call is equivalent to free(ptr). Return NULL
+		
+
+		
+Don’t forget to free ptr when it makes sense
+		
+
+		
+5. We must accept finite disappointment, but never lose infinite hope
+		
+Write a program that multiplies two positive numbers.
+		
+
+		
+Usage: mul num1 num2
+		
+
+		
+num1 and num2 will be passed in base 10
+		
+
+		
+Print the result, followed by a new line
+		
+
+		
+If the number of arguments is incorrect, print Error, followed by a new line, and exit with a status of 98
+		
+
+		
+num1 and num2 should only be composed of digits. If not, print Error, followed by a new line, and exit with a status of 98
+		
+
+		
+You are allowed to use more than 5 functions in your file
+		
+
+		
+You can use bc (man bc) to check your results.
 
